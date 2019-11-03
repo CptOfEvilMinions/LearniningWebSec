@@ -1,0 +1,24 @@
+FROM alpine:3.9
+
+# Create app user
+RUN addgroup -S app && adduser -S -G app app 
+
+# Install things
+RUN apk add python3
+
+# Copy app
+RUN mkdir /simple_http_server
+COPY simple_http_post_server.py /simple_http_server/simple_http_post_server.py
+COPY evil_js_cookie.js /simple_http_server/evil_js_cookie.js
+COPY evil_js_post_cookie.js /simple_http_server/evil_js_post_cookie.js
+COPY vulnerable_js.js /simple_http_server/vulnerable_js.js
+WORKDIR /simple_http_server
+
+# Set perms for app user
+RUN chown app:app -R /simple_http_server
+
+# Switch to lower priv user
+USER app
+
+# Run server
+CMD ["python3","-u","simple_http_post_server.py"]

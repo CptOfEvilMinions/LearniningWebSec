@@ -1,0 +1,25 @@
+FROM alpine:3.9
+
+# Create app user
+RUN addgroup -S app && adduser -S -G app app 
+
+# Install things
+RUN apk add python3
+
+# Copy app
+RUN mkdir /vulnerable-server
+COPY app /vulnerable-server/app
+COPY requirements.txt /vulnerable-server/requirements.txt
+COPY vulnerable_server.py /vulnerable-server/vulnerable_server.py
+
+WORKDIR /vulnerable-server
+RUN pip3 install -r requirements.txt
+
+# Set perms for app user
+RUN chown app:app -R /vulnerable-server
+
+# Switch to lower priv user
+USER app
+
+# Run server
+CMD ["python3","-u","vulnerable_server.py"]
