@@ -1,0 +1,20 @@
+version: '3'
+services:
+  nginx-waf:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx-modsec
+    ports:
+      - 127.0.0.1:8080:80
+  vuln-server:
+    build:
+      context: .
+      dockerfile: Dockerfile-vulnerable-server
+    ports:
+      - 127.0.0.1:5000:5000
+  simple-http-server:
+    build:
+      context: .
+      dockerfile: Dockerfile-http-simple-server
+    ports:
+      - 127.0.0.1:8000:8000

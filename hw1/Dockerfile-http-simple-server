@@ -9,9 +9,9 @@ RUN apk add python3
 # Copy app
 RUN mkdir /simple_http_server
 COPY simple_http_post_server.py /simple_http_server/simple_http_post_server.py
-COPY evil_js_cookie.js /simple_http_server/evil_js_cookie.js
-COPY evil_js_post_cookie.js /simple_http_server/evil_js_post_cookie.js
-COPY vulnerable_js.js /simple_http_server/vulnerable_js.js
+COPY conf/malicious_js/evil_js_cookie.js /simple_http_server/evil_js_cookie.js
+COPY conf/malicious_js/evil_js_post_cookie.js /simple_http_server/evil_js_post_cookie.js
+COPY conf/malicious_js/vulnerable_js.js /simple_http_server/vulnerable_js.js
 WORKDIR /simple_http_server
 
 # Set perms for app user
