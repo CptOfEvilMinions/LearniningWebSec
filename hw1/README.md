@@ -2,6 +2,7 @@
 
 ## Exercise
 This week's exercise is to create a Flask server that is vulnerable cross-site scripting (XSS) with a server to handle the response.
+* [HoldMyBeerSecurity blog post - Part 1: Learning web security - Reflected Cross-site Scripting(XSS)]()
 
 ## Setup env
 1. `virtualenv -p python3 venv`
@@ -15,6 +16,7 @@ This week's exercise is to create a Flask server that is vulnerable cross-site s
 1. `docker-compose -f docker-compose-waf.yml build nginx-waf`
     1. It will take about ~15mins to build the NGINX container with modsec
 1. `docker-compose -f docker-compose-waf.yml up`
+
 
 ## References 
 * [Github - Best Practices for Non-root User #48](https://github.com/mhart/alpine-node/issues/48)

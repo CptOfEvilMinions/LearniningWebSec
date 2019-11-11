@@ -1,4 +1,4 @@
-from flask import request, Blueprint, render_template, session, make_response
+from flask import request, Blueprint, render_template, make_response
 from datetime import datetime
 from app import app
 
@@ -71,26 +71,26 @@ def vulnerable_query_print_cookie():
     
     return response
 
-# Create a route to take in a query from the URL
-@main.route('/vulnerable_query_push_cookie', methods=['GET'])
+# Create a route to take in a query from the URL and set a cookie
+@main.route('/vulnerable_query_post_cookie', methods=['GET'])
 def vulnerable_query_push_cookie():
-    
-    response = None
-    if request.args:
-        # Extract the query string(s) from the URL
-        query = request.args
+    # Extract the query string(s) from the URL
+    query = request.args
 
-        # Print the queries
-        print ( query )
+    # Print the queries
+    print ( query )
 
-        # Print the bad query
-        print ( query['query'] )
+    # Print the bad query
+    print ( query['query'] )
 
-        # Create response
-        response = make_response(render_template('main/vulnerable_query_render.html', query=query['query']))
-        response.set_cookie('foo','bar')  
-    else:
-        response = make_response (render_template('main/vulnerable_query_render.html'))
-        response.set_cookie('foo','bar')  
-    
+    # Set cookie
+    response = make_response(render_template('main/vulnerable_query_render.html', query=query['query']))
+
+    # Set HttpOnly in cookie to False 
+    response.set_cookie('not_secure_foo','not_secure_bar')
+
+    # Set HttpOnly in cookie to True 
+    response.set_cookie('super_secure_foo','super_secure_bar', secure=True)    
+
+    # Create response
     return response
