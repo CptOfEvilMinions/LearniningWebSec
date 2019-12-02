@@ -1,4 +1,4 @@
-# HW2 - CSRF
+# HW2 - Cross-Site Request Forgery (CSRF)
 
 ## Development
 1. `virtualenv -p python3 venv`
@@ -6,6 +6,12 @@
 
 ## Spin up with Docker
 1. `docker-compose up -d`
+
+## Spin up with Docker and modsec WAF
+1. `cd ../Docker-waf`
+1. `docker build -t learnwebsec-nginx-modsec:v1 .`
+1. `cd ../hw2`
+1. `docker-compose -f docker-compose-waf.yml up`
 
 ## References
 * [StackOverFlow - How does one detect if one is running within a docker container within Python?](https://stackoverflow.com/questions/43878953/how-does-one-detect-if-one-is-running-within-a-docker-container-within-python)
