@@ -1,17 +1,18 @@
-version: '2.2'
+version: '3'
 services:
-  nginx:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile-nginx
+  nginx-waf:
+    image: learnwebsec-nginx-modsec:v1
+    #build:
+    #  context: .
+    #  dockerfile: docker/Dockerfile-nginx-modsec
     ports:
       - 127.0.0.1:80:80
-    networks:
+    networks: 
       - default
       - backend
     depends_on:
-      - vulnerable_app
-  vulnerable_app:
+      - vulnerable-app
+  vulnerable-app:
     build:
       context: .
       dockerfile: docker/Dockerfile-app
@@ -27,7 +28,7 @@ services:
     networks: 
       - default
     depends_on:
-      - nginx
+      - nginx-waf
   
 networks: 
   backend:

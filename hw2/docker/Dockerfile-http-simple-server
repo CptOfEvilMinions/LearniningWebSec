@@ -1,0 +1,22 @@
+FROM alpine:3.9
+
+# Create app user
+RUN addgroup -S app && adduser -S -G app app 
+
+# Install things
+RUN apk add python3
+
+# Copy app
+RUN mkdir /simple_http_server
+COPY malicious/run_vulnerable_simple_server.py /simple_http_server/simple_http_post_server.py
+COPY malicious/transfer_money.html /simple_http_server/transfer_money.html
+WORKDIR /simple_http_server
+
+# Set perms for app user
+RUN chown app:app -R /simple_http_server
+
+# Switch to lower priv user
+USER app
+
+# Run server
+CMD ["python3","-u","simple_http_post_server.py"]

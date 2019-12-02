@@ -15,7 +15,7 @@ auth = Blueprint('auth', __name__, url_prefix="/auth", template_folder='template
 # Create login route
 @app.route('/', methods=['GET', 'POST'])
 @auth.route('/login', methods=['GET', 'POST'])
-#@csrf.exempt
+@csrf.exempt
 def user_login():
     """User login page."""
     # Bypass Login screen if user is logged in
