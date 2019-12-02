@@ -6,17 +6,21 @@ RUN apt-get update -y && apt-get install python3-minimal python3-pip -y
 # Create user
 RUN useradd -ms /bin/bash app
 
-# Copy app
+### Copy app ###
 RUN mkdir /web_app
-COPY app /web_app/app
+
+# Install Python3 requirements
 COPY requirements.txt /web_app/requirements.txt
+RUN pip3 install -r /web_app/requirements.txt
+
+COPY app /web_app/app
 COPY config /web_app/config
 COPY run_vulnerable_server.py /web_app/run_vulnerable_server.py
 RUN chown app:app -R /web_app
 WORKDIR /web_app
 
-# Install Python3 requirements
-RUN pip3 install -r requirements.txt
+
+
 
 # Change user
 USER app

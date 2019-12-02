@@ -33,8 +33,6 @@ def vulnerable_transfer_money():
             db.session.add(user_withdrawl)
             db.session.commit()
 
-
-
             # User balance is being added too
             user_deposit = User.query.filter_by(email=email).first()
             user_deposit.balance = user_deposit.balance + amount

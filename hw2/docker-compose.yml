@@ -10,8 +10,8 @@ services:
       - default
       - backend
     depends_on:
-      - app
-  app:
+      - vulnerable_app
+  vulnerable_app:
     build:
       context: .
       dockerfile: docker/Dockerfile-app
