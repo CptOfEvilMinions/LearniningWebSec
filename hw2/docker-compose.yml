@@ -1,0 +1,22 @@
+version: '2.2'
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-nginx
+    ports:
+      - 127.0.0.1:80:80
+    networks:
+      - default
+      - backend
+    depends_on:
+      - app
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-app
+    networks:
+     - backend
+  
+networks: 
+  backend:
