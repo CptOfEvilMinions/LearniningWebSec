@@ -51,7 +51,7 @@ def vulnerable_transfer_money():
     # GET: Serve transfer money page
     return render_template('vulnerable/transfer_money.html',
                            form=TransferForm(),
-                           title='Transfer money',
+                           title='Vulnerable money transfer',
                            template='login-page',
                            body="Log in with your User account.")
 

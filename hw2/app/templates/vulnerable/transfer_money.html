@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,500" rel="stylesheet">
     </head>
 
-    <body class="{{template}}">
+    <body class="{{ template }}">
     <div class="container">
 
     <div class="formwrapper">
@@ -20,7 +20,7 @@
                 {{ message }}
             </div>
           {% endfor %}
-          <h1>Transfer money</h1>
+          <h1>{{ title }}</h1>
           <div class="user_email">
              {{ form.email.label }}
              {{ form.email(placeholder='youremail@example.com') }}

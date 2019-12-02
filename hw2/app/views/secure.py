@@ -49,6 +49,6 @@ def secure_transfer_money():
     # GET: Serve transfer money page
     return render_template('secure/transfer_money.html',
                            form=TransferForm(),
-                           title='Transfer money',
+                           title='Secure money transfer',
                            template='login-page',
                            body="Log in with your User account.")
