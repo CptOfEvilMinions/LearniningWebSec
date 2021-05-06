@@ -3,4 +3,4 @@ flask-login==0.4.1
 flask_sqlalchemy==2.4.1
 flask-bootstrap==3.3.7.1
 flask-wtf==0.14.2
-flask-cors==3.0.8
+flask-cors==3.0.9
